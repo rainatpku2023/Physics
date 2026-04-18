@@ -1,0 +1,510 @@
+[lecture6(ch15)-分离变量法总结.pdf](https://dengbaiyu2023.yuque.com/attachments/yuque/0/2025/pdf/2371504/1761187504026-ccb81cfb-8234-4a64-a900-4bbc4bd9f29c.pdf)
+
+[完备性证明.pdf](https://dengbaiyu2023.yuque.com/attachments/yuque/0/2025/pdf/2371504/1761735438126-d8c2951e-a760-48f6-890e-d398bb03f4b5.pdf)
+
+[SL三类边界非简并.pdf](https://dengbaiyu2023.yuque.com/attachments/yuque/0/2025/pdf/2371504/1761735436816-9cb3dde2-3098-4604-8a05-ca6bd88a68a0.pdf)
+
+[Sturm比较定理.pdf](https://dengbaiyu2023.yuque.com/attachments/yuque/0/2025/pdf/2371504/1761735436920-344e741e-5953-4e13-b5d5-0c83de8b35bf.pdf)
+
+[极大极小.pdf](https://dengbaiyu2023.yuque.com/attachments/yuque/0/2025/pdf/2371504/1761735437251-2cdc88e3-96a0-46ba-a171-659165e7c70c.pdf)
+
+[WuCS自伴算符.pdf](https://dengbaiyu2023.yuque.com/attachments/yuque/0/2025/pdf/2371504/1761735437909-9b0cba4b-0672-41a1-93a0-7f8a497a24e5.pdf)
+
+### 从矢量空间到内积空间
+#### 矢量空间
++ **矢量空间的定义**：
++ 设$ \vec{x} $和$ \vec{y} $是集合$ V $中的元素，即：
+
+$ \vec{x} \in V,\; \vec{y} \in V $
+
++ 如果对于任意的实数（或者复数）$ \alpha,\beta $有：
+
+$ \alpha\vec{x}+\beta\vec{y} \in V $
+
++ 那么称$ V $为实数（或者复数）域上的**矢量空间**或者线性空间。
++ 其元素称为矢量空间的**矢量**。
+
+#### 内积
++ 如果在（定义在实数或者复数域$ K $上的）矢量空间定义一个二元标量值函数$ (\vec{x},\vec{y}) $，满足：
+1. $ (\vec{x},\vec{y}) = (\vec{y},\vec{x})^* $
+2. $ (\alpha \vec{x}+ \beta \vec{y},\vec{z}) = \alpha^*(\vec{x},\vec{z})+\beta^*(\vec{y},\vec{z}) $
+    1. 其中$ \alpha,\beta $是数域$ K $上的标量。
+3. 对于任何矢量$ \vec{x} $，都有$ (\vec{x},\vec{x}) \geq 0 $；当且仅当$ \vec{x} = \vec{0} $时$ (\vec{x},\vec{x}) = 0 $
++ 则称$ (\vec{x},\vec{y}) $为$ \vec{x},\vec{y} $的内积。
+    - <font style="color:#DF2A3F;">注意，这要一个函数与自己内积为非负实数，这是为了定义函数的范数而为。</font>
+
+#### 内积空间
++ 定义了内积的矢量空间称为**内积空间**。
++ 具有**实内积的实矢量空间**称为**欧几里得空间（Euclidean Space）**。
++ 具有**复内积的复矢量空间**称为**酉空间（Unitary Space）**
+
+#### 内积空间中的正交与正交归一
++ 当且仅当$ (\vec{x},\vec{y}) = 0 $时，两矢量$ \vec{x},\vec{y} $**正交**。
++ 如果对于所有的$ i,j $，都有$ (\vec{x}_i,\vec{x}_j) =\delta_{ij} $，则称矢量组$ \{\vec{x}_1,\vec{x}_2,...\} $是**正交归一**的。
++ $ \mathrm{Schmidt} $**正交化**：一种取得正交基的方式：
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341213392-bb94281d-48f2-45f6-8074-4df9ce8a2cae.png" width="402" title="" crop="0,0,1,1" id="u3cba2133" class="ne-image">
+
+#### Bessel不等式与正交归一基
++ 假设$ n $为线性空间中有一组正交归一的矢量：
+
+$ \{\vec{x}_1,\vec{x}_2,...,\vec{x}_k\}, \; k\leq n $
+
+    - 可以证明$ \mathrm{Bessel} $不等式，即对于空间中的一个矢量$ \vec{x} $有：
+
+$ ||\vec{x}||^2 \leq  \sum_{i=1}^n|(\vec{x}_i,\vec{x})|^2 $
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341309231-9308277a-ac74-4f3d-9479-65f1f3030d15.png" width="335" title="" crop="0,0,1,1" id="u9f02da9b" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341324668-97e208e3-986c-49d6-8187-3f91999e3ef4.png" width="332" title="" crop="0,0,1,1" id="ufaa999d1" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341345096-5cb75dd0-96fd-4b1f-ac91-3e47afc77f79.png" width="331" title="" crop="0,0,1,1" id="u6a218e88" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341357027-128514de-fadf-4448-8d66-cc6ed6211160.png" width="345" title="" crop="0,0,1,1" id="ucff2d8a6" class="ne-image">
+
+#### Parseval等式与正交归一完备基
++ $ \mathrm{Parseval} $等式：有限维空间正交归一矢量组完备的充分必要条件：
+
+$ ||\vec{x}||^2 = \sum_{i=1}^n|(\vec{x}_i,\vec{x})|^2 $
+
+### 从函数空间到Hilbert空间（看看即可不会数学）
+#### 函数空间
++ 函数空间是一类特殊的矢量空间，空间的元素是函数。
++ 我们只考虑可测（可积）函数。
+
+#### 平方可积函数
++ 定义在一定区间（为了确定起见，设为闭区间$ a\leq x \leq b $）上的复值平方可积函数$ f(x) $
+
+$ \int_a^b |f(x)|^2 dx <\infin $
+
++ **Theorem1：平方可积函数的集合构成一个矢量空间。**
++ 可以证明：平方可积的线性组合仍然平方可积。
+    - 例如，两个平方可积的函数的和仍然是平方可积函数。
+    - 证明：
+
+$ \because|f_1(x)+f_2(x)|^2+|f_1(x)-f_2(x)|^2 = 2[|f_1(x)|^2+|f_2(x)|^2] $
+
+$ \therefore |f_1(x)+f_2(x)|^2\leq  2[|f_1(x)|^2+|f_2(x)|^2] $
+
+$ \therefore \int_a^b|f_1(x)+f_2(x)|^2dx \leq   \int_a^b2[|f_1(x)|^2+|f_2(x)|^2]dx <\infin $
+
+$ \mathrm{Q.E.D.} $
+
++ **Theorem2：对于两个平方可积的函数**$ f_1(x),f_2(x) $**，**$ \int_a^b f_1^*(x)f_2(x)dx $**存在。**
+    - 证明：
+
+$ \because |f_1^*(x)f_2(x)| = |f_1(x)|\cdot |f_2(x)| \leq \frac{1}{2}[|f_1(x)|^2+|f_2(x)|^2] $
+
+$ \therefore \int_a^b |f_1^*(x)f_2(x)|dx \leq \int_a^b\frac{1}{2}[|f_1(x)|^2+|f_2(x)|^2]dx < \infin $
+
+$ \therefore |\int_a^b f_1^*(x)f_2(x)dx| < \infin,原积分存在。 $
+
+$ \mathrm{Q.E.D.} $
+
+#### 内积函数空间
++ 希望在平方可积函数空间定义内积：
+
+$ (f_1,f_2) = \int_a^b f_1^*(x)f_2(x)dx $
+
+    - 从而得到一个内积空间。
++ 回顾一下内积空间定义中的三条要求, 前两条是显然满足的. 而且, 对于空间中的任意函数 $ f(x) $,恒有$ (f, f) ≥ 0 $。
++ 现在的问题是，在这样的内积定义下，如果$ (f,f) = 0 $，$ f(x) $并不见得在整个区间上处处为零。
++ 准确地说，如果$ (f,f) = 0 $，则$ f(x) $可以在测度为零的点集取非零值。
+    - <font style="color:#DF2A3F;">需要排除这种不恒为零但是内积为零的情形。</font>
+    - <font style="color:#DF2A3F;">方法是定义一种新的积分（</font>$ \mathrm{Lebesgue} $<font style="color:#DF2A3F;">积分），并重新规定零函数（广义零函数）。</font>
+
+#### Lebesgue测度和积分
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762434459375-91e5b938-686b-44ea-87d1-c7b441455fd9.png" width="401" title="" crop="0,0,1,1" id="ud7ca4b42" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762434475168-acc731ea-8b39-4cf5-9139-334c120dc8f0.png" width="400" title="" crop="0,0,1,1" id="u680223e8" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762434583414-8813fec8-f16a-4f90-b4d9-3786aed0c41a.png" width="400" title="" crop="0,0,1,1" id="u05b683db" class="ne-image">
+
+#### Hilbert空间
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762433708546-b176f7ed-81b9-46ba-8314-feb10f2101b0.png" width="401" title="" crop="0,0,1,1" id="ua15baf0e" class="ne-image">
+
+#### 正交归一完备函数集
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762435325835-4583f247-4e19-4794-8d00-d65df046c323.png" width="334" title="" crop="0,0,1,1" id="ud6bcbba5" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762435345748-43030d5b-7ab7-447a-8def-aad809727dc3.png" width="333" title="" crop="0,0,1,1" id="ud8a27cd7" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762435436197-135d9887-48d8-4fae-8748-9c05dca4ebb3.png" width="333" title="" crop="0,0,1,1" id="u2aa605e7" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762435449746-b18d35ea-a8d5-4846-8f53-bb987c8a9717.png" width="335" title="" crop="0,0,1,1" id="u1ecc4d28" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762435492603-34c645b8-1342-4b9d-94c1-86e6a02a9c4c.png" width="333" title="" crop="0,0,1,1" id="u606db085" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762435505234-fef1a7b3-e791-45d8-a286-9323ad8e6772.png" width="331" title="" crop="0,0,1,1" id="uf0c90e42" class="ne-image">
+
+### 自伴算符的本征值问题
+#### 伴算符
++ **伴算符的定义**：
++ 如果算符$ \hat{L},\hat{M} $是定义在一定函数空间$ \mathscr{H} $内的（微分）算符
+    - 如果对该函数空间内**任意**两个函数$ u,v $恒有：
+
+$ (v,\hat{L}u) = (\hat{M}v,u) $
+
+    - 即：
+
+$ \int_{a}^{b} v^* \hat{L}udx = \int_{a}^{b} (\hat{M}v)^*udx $
+
+    - 那么称$ \hat{M} $是$ \hat{L} $的伴算符，记为：
+
+$ \hat{M} = \hat{L}^{\dagger} $
+
+        * 如果将算符$ \hat{L} $看成一个矩阵，那么$ \hat{L}^\dagger $是它的转置复共轭。
+
+
+
++ 据此也可以写出：
+
+$ (v,\hat{L}u) = (\hat{L}^{\dagger}v,u) $
+
+$ \int_{a}^{b} v^* \hat{L}udx = \int_{a}^{b} (\hat{L}^\dagger v)^* udx $
+
+    - 与$ \hat{M} $相关表达式相对比，可以看出$ \hat{M} = \hat{L}^{\dagger} $。
+
+
+
++ **一个例子**：
+
+$ \hat{L} = \frac{d}{dx},\; a<x<b $
+
+    - 的伴算符是：
+
+$ \hat{L}^{\dagger} = -\frac{d}{dx},\; a<x<b $
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762308025052-4da55494-caf7-48c0-8b89-d94a6fc1a3aa.png" width="403" title="" crop="0,0,1,1" id="u9b87da59" class="ne-image">
+
+#### 自伴算符与自伴性
++ **自伴算符（Self-adjoint Operator）的定义**：
++ 如果算符$ \hat{L} $的伴算符就是它自身，即对于该函数空间$ \mathscr{H} $内的任意两个函数$ u,v $，恒有：
+
+$ (v,\hat{L}u) = (\hat{L}v,u) $
+
+    - 即：
+
+$ \int_{a}^{b} v^* \hat{L}udx = \int_{a}^{b} (\hat{L}v)^*udx $
+
+    - 因为$ u,v $选择的任意性，还可以改写为：
+
+$ \hat{L} = \hat{L}^{\dagger} $
+
+    - 则称$ \hat{L} $自伴算符。
+
+
+
++ **可见：函数的自伴性，总是和一定的函数空间联系在一起的。**
+    - 函数定义在给定区间上，即需要规定内积积分上下界。
+    - 函数需要具有足够的连续性，即属于某一$ \mathrm{Hilbert} $空间。
+    - 函数满足一定的边界条件，局限在$ \mathrm{Hilbert} $空间中一定的子空间（流形）内。
+
+
+
++ **一个例子**：
+
+$ \hat{L} = i\frac{d}{dx},\; a<x<b $
+
+    - 的伴算符是：
+
+$ \hat{L}^{\dagger} = i\frac{d}{dx},\; a<x<b $
+
+    - 因此$ \hat{L} = \hat{L}^{\dagger} $，即$ \hat{L} $是自伴算符。
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762307991420-3a9c7b55-832f-4b0c-91b2-551be5dd695c.png" width="398" title="" crop="0,0,1,1" id="u503ba5c6" class="ne-image">
+
+#### Hermite算符与Hermite性
++ $ \mathrm{Hermite} $**算符（Hermitian Operator）的定义**：
++ 如果对于函数空间$ \mathscr{H} $中的一个子空间$ D(\hat{L}) $上的两个函数$ u,v  $都有：
+
+$ (v,\hat{L}u) = (\hat{L}v,u) $
+
+    - 即：
+
+$ \int_{a}^{b} v^* \hat{L}udx = \int_{a}^{b} (\hat{L}v)^*udx $
+
+    - 则称$ \hat{L} $为$ \mathrm{Hermite} $算符。
+
+#### Hermite算符与自伴算符的关系
++ $ \mathrm{Hermite} $算符包含自伴算符。
+    - 所有的自伴算符都是$ \mathrm{Hermite} $算符。
+    - 但并不是所有的$ \mathrm{Hermite} $算符都是自伴算符。
++ $ \mathrm{Hermite} $算符在定义域内有内积关系，自伴算符的定义域应该是整个能取到的$ \mathscr{H} $。
+
+> + <font style="color:#8A8F8D;">Let </font>$ \mathscr{H} $<font style="color:#8A8F8D;"> be a pre-Hilbert space equipped with an inner product </font>$ (f,g) $<font style="color:#8A8F8D;"> and operator</font>$ \hat{T} $<font style="color:#8A8F8D;">：</font>
+>     - $ \hat{T} : D(\hat{T}) \rightarrow \mathscr{H} $
+>     - $ \hat{T} $<font style="color:#8A8F8D;"> is an linear operator, Then:</font>
+> 1. <font style="color:#8A8F8D;">If </font>$ (\hat{T}f,g) = (f,\hat{T}g) $<font style="color:#8A8F8D;"> for all </font>$ x,y \in D(\hat{T}) $<font style="color:#8A8F8D;"> then </font>$ \hat{T} $<font style="color:#8A8F8D;"> is symmetric.</font>
+> 2. <font style="color:#8A8F8D;">If </font>$ \hat{T} $<font style="color:#8A8F8D;"> is symmetric and also bounded then it is Hermitian.</font>
+> 3. <font style="color:#8A8F8D;">If </font>$ \hat{T} $<font style="color:#8A8F8D;"> is symmetric and </font>$ D(\hat{T}) =\mathscr{H} $<font style="color:#8A8F8D;"> then it is Self-adjoint.</font>
+>
+
+### 自伴算符的本征值问题
+#### 自伴算符的本征值问题
++ 如果$ \hat{L} $是自伴算符，即$ \hat{L} = \hat{L}^{\dagger} $，那么方程：
+
+$ \hat{L} y(x) = \lambda y(x) $
+
+    - 称为自伴算符的本征值问题。
+
+#### 自伴算符本征值问题的性质
++ **性质1：自伴算符的本征值一定存在，本征值有无穷多个，构成可数集。**
++ **性质2：自伴算符的本征值必为实数。**
+    - 证明：设$ \hat{L} $是一个自伴算符，它的一个本征函数为$ y $对应本征值为$ \lambda $：
+
+$ \hat{L} y = \lambda y $
+
+        * 对上式两侧求复共轭：
+
+$ (\hat{L}y)^* = \lambda^* y^* $
+
+        * 第一个式子乘以$ y^* $，第二个式子乘以$ y $，相减再积分：
+
+$ \int_{a}^{b} [y^* \hat{L}y-(\hat{L}y)^* y]dx = (\lambda - \lambda^*)\int_a^b yy^*dx $
+
+        * 根据[自伴算符的定义](#Kb4eA)，可以知道等式左边为零：
+
+$ \int_{a}^{b} [y^* \hat{L}y-(\hat{L}y)^* y]dx = 0 $
+
+        * 再根据本征函数的定义，本征函数模方应该非零：
+
+$ \int_a^b yy^*dx \neq 0 $
+
+        * 因此：
+
+$ \lambda - \lambda^* = 0 $
+
+$ \Rightarrow \lambda = \lambda^* $
+
+        * 即本征值$ \lambda $是实数。
+
+$ \mathrm{Q.E.D.} $
+
++ **性质3：自伴算符的本征值具有正交性，即对应不同本征值的本征函数一定正交。**
+    - 证明：设$ \hat{L} $是一个自伴算符，它的两个本征函数为$ y_1,y_2 $对应本征值为$ \lambda_1,\lambda_2 $，其中$ \lambda_1 \neq \lambda_2 $：
+
+$ \hat{L} y_1 = \lambda_1 y_1 $
+
+$ \hat{L} y_2 = \lambda_2 y_2 $
+
+        * 第一个式子乘以$ y_2^* $，第二个式子乘以$ y_1^* $，二者相减再积分：
+
+$ LHS = \int_a^b [y_2^* \hat{L} y_1 - y_1^* \hat{L} y_2] dx 
+= \int_a^b [y_2^* \hat{L} y_1 - y_1^* \hat{L}^\dagger y_2] dx  $
+
+$ = \int_a^b [y_2^* \hat{L} y_1 - (\hat{L} y_1)^* y_2] dx = \int_a^b y_2^* \lambda_1 y_1 - \lambda_1^* y_1y_2^* =0 $
+
+$ RHS = (\lambda_2-\lambda_1)\int_a^b y_2 y_1^*dx $
+
+            + 其中$ \lambda_2-\lambda_1 \neq 0 $，因此：
+
+$ \int_a^b y_2(x) y_1^*(x)dx = 0 $
+
+        * 即自伴算符对应不同本征值的本征函数一定正交。
+
+$ \mathrm{Q.E.D.} $
+
+### Sturm-Liouville型方程的本征值问题
+#### Sturm-Liouville型方程举例
++ $ \mathrm{Legendre} $方程：
+
+$ \frac{d}{dx}[(1-x^2)\frac{dy}{dx}]+\lambda y = 0 $
+
+$ \lambda_l = l(l+1) $
+
++ $ m $次连带$ \mathrm{Legendre} $方程：
+
+$ \frac{d}{dx}[(1-x^2)\frac{dy}{dx}]+[\lambda-\frac{m^2}{1-x^2}]y = 0 $
+
+$ \lambda_l = l(l+1) $
+
++ $ \nu $阶$ \mathrm{Bessel} $方程：
+
+$ \frac{1}{x}\frac{d}{dx}(x\frac{dy}{dx})+(1- \frac{\nu^2}{r^2})y = 0 $
+
+$ \mu_\nu = \nu^2 $
+
++ 球$ \mathrm{Bessel} $方程：
+
+$ \frac{1}{x^2} \frac{d}{dx} (x^2 \frac{dy}{dx}) +[1-\frac{l(l+1)}{x^2}]y=0 $
+
+$ \lambda_l = l(l+1) $
+
+#### Sturm-Liouville型方程
++ $ \mathrm{Sturm-Liouville} $型**方程**的一般形式为：
+
+$ \frac{d}{dx}[p(x)\frac{dy}{dx}]+[\lambda \rho(x)-q(x)]y = 0 $
+
+    - 其中$ p(x),\rho(x),q(x) $均为**实值函数**。
+    - 在给定的区间$ [a,b] $中，都足够连续。
+    - $ p(x) \geq 0,q(x) \geq 0 $，对于一般关注的物理问题中权函数$ \rho(x)>0 $。
++ 权函数$ \rho(x) $常常来自于：
+    - 空间的数学描述的不均匀性。
+    - 或者物理性质的不均匀性。
++ 据此，可以定义$ \mathrm{Sturm-Liouville} $型方程的**微分算符**为：
+
+$ \hat{L}y = \frac{1}{\rho(x)}\{-\frac{d}{dx} [p(x)\frac{d}{dx}]+q(x)\}y $
+
+$ D(\hat{L})= \{y(x): y \in \mathscr{H},\hat{L}y \in \mathscr{H},且满足适当的边界条件\} $
+
+    - <font style="color:#8A8F8D;">这说明微分算符</font>$ \hat{L} $<font style="color:#8A8F8D;">不仅定义域为</font>$ \mathscr{H} $<font style="color:#8A8F8D;">，映射结果也得在</font>$ \mathscr{H} $<font style="color:#8A8F8D;">里。</font>
+    - <font style="color:#8A8F8D;">注意前面的权函数</font>$ \rho(x) $<font style="color:#8A8F8D;">的倒数。</font>
++ 此时，可以将$ \mathrm{Sturm-Liouville} $型方程改写为：
+
+$ \hat{L}y = \lambda y $
+
+$ D(\hat{L})= \{y(x): y \in \mathscr{H},\hat{L}y \in \mathscr{H},且满足适当的边界条件\} $
+
+    - $ \lambda $是本征值。
+
+#### S-L型方程的权函数与内积
++ $ \rho(x) $称为权函数。
++ 采用**内积的新定义**如下：
+
+$ (y_1,y_2)_\rho \equiv \int_a^b y_1^*(x)y_2(x)\rho(x)dx $
+
+    - 我们将看到，只有在这样的内积定义下，在再附加上合适的边界条件，
+    - $ \mathrm{Sturm-Liouville} $型微分算符自伴。
+
+#### S-L型算符成为自伴算符的条件
++ 我们下面推导成为自伴算符的条件：
++ 对于$ D(\hat{L}) $中任意的两个函数$ f,g $，我们可以按照自伴算符的定义，考察它们应该满足的边界条件：
+
+$ (f,\hat{L}g)_\rho = \int_a^b f^*(x) \frac{1}{\rho(x)}\{ -\frac{d}{dx}[p(x)\frac{d}{dx}]+q(x)\}g(x)\rho(x)dx $
+
+    - 先将权函数消掉：
+
+$ = \int_a^b f^*(x) \{ -\frac{d}{dx}[p(x)\frac{d}{dx}]+q(x)\}g(x)dx $
+
+    - 拆为两项：
+
+$ = -\int_a^b f^*(x)  \frac{d}{dx}[p(x)\frac{dg(x)}{dx}]dx+\int_a^b f^*(x)q(x)g(x)dx $
+
+    - 第一次分部积分：
+
+$ = -f^*(x)p(x)\frac{dg(x)}{dx}|_{x=a}^{x=b}+\int_a^b \frac{df^*(x)}{dx} p(x)\frac{dg(x)}{dx}dx +\int_a^b f^*(x)q(x)g(x)dx $
+
+    - 再次进行分部积分，根据形式上的对称性写出积分表达式：
+
+$ =-p(x)f^*(x)\frac{dg(x)}{dx}|_{x=a}^{x=b} + p(x)g(x)\frac{df^*(x)}{dx}|_{x=a}^{x=b} + \int_a^b g^*(x) \{ -\frac{d}{dx}[p(x)\frac{d}{dx}]+q(x)\}f(x)dx $
+
+    - 第一项与第二项为表面项，相互合并；第三项积分式重新引入权函数：
+
+$ =p(x)[g(x)\frac{df^*(x)}{dx}-f(x)\frac{dg^*(x)}{dx}]|_{x=a}^{x=b} + \int_a^b g^*(x)\frac{1}{\rho(x)} \{ -\frac{d}{dx}[p(x)\frac{d}{dx}]+q(x)\}f(x)\rho(x)dx $
+
+$ =p(x)[g(x)\frac{df^*(x)}{dx}-f(x)\frac{dg^*(x)}{dx}]|_{x=a}^{x=b}+(\hat{L}f,g)_\rho $
+
+    - 这说明，希望使$ \hat{L} $自伴算符，即$ (f,\hat{L}g)_\rho = (\hat{L}f,g)_\rho $，需要：
+
+$ p(x)[g(x)\frac{df^*(x)}{dx}-f(x)\frac{dg^*(x)}{dx}]|_{x=a}^{x=b}=0 $
+
+#### S-L型算符本征值的性质/S-L型方程本征值的性质
++ 适当的边界条件满足后，$ \mathrm{Sturm-Liouville} $型算符成为自伴算符：
+
+$ \hat{L}y = \frac{1}{\rho(x)}\{-\frac{d}{dx} [p(x)\frac{d}{dx}]+q(x)\}y $
+
+$ D(\hat{L})= \{y(x): y \in \mathscr{H},\hat{L}y \in \mathscr{H},而且p(x)[g(x)\frac{df^*(x)}{dx}-f(x)\frac{dg^*(x)}{dx}]|_{x=a}^{x=b}=0\} $
+
++ 根据自伴算符的性质，$ \mathrm{Sturm-Liouville} $型算符应该有如下性质：
+    1. 自伴算符的本征值必为实数。
+    2. 对应不同本征值的本征函数相互正交
+    3. 本征函数完备性
+
+#### 按照本征函数展开
++ 如果$ \hat{L} $是一个自伴算符：
++ 对于一个函数$ f(x) \in \mathscr{H} $，可以将其按照$ \hat{L} $的本征函数组$ \{y_i\} $进行展开：
+
+$ f(x) = \sum_{i=1}^{\infin} c_i y_i(x) $
+
+    - 其中叠加系数$ c_i $的表达式为：
+
+$ c_i  =\frac{(f,y_i)_\rho}{||y_i||^2_\rho}= \frac{(f,y_i)_\rho}{(y_i,y_i)_\rho} = \frac{\int_a^bf^*(x)y_i(x)\rho (x)dx}{\int_a^by_i^*(x)y_i(x)\rho (x)dx} $
+
+    - 一般来说讨论的都是实值函数，所以还可以简化为：
+
+$ c_i  = \frac{\int_a^bf(x)y_i(x)\rho (x)dx}{\int_a^b[y_i(x)]^2\rho (x)dx} $
+
+### Sturm-Liouville型方程本征值问题的简并现象
+#### 简并现象
++ **简并现象**：一个本征值对应着**两个及以上**且**线性无关**的本征函数。
+
+
+
++ 例子：
+    - 本征值问题：
+
+$ \Phi''(\phi)+\mu \Phi(\phi) =0 $
+
+$ \Phi(0) = \Phi(2\pi),\; \Phi'(0) = \Phi'(2\pi) $
+
+    - 就是简并的，因为对于本征值：
+
+$ \mu_m = m^2 $
+
+    - 来说，存在两个线性无关的本征函数：
+
+$ \Phi_{m1}(\phi) = \sin m\phi,\;\Phi_{m2}(\phi) = \cos m\phi $
+
+        * 因为它们的$ \mathrm{Wronski} $行列式不为零：
+
+$ W[\Phi_{m1},\Phi_{m2}] = \begin{vmatrix}\Phi_{m1} & \Phi_{m2} \\ \Phi'_{m1}& \Phi'_{m2}\end{vmatrix} =  \begin{vmatrix}\cos m\phi & \sin m\phi \\ -\sin m\phi& \cos m\phi\end{vmatrix} = 1 \neq 0 $
+
+#### 边界条件的两种情况
++ 我们[之前](#Lz5zV)提到，想要让$ \mathrm{Sturm-Liouville} $型微分算符成为自伴算符，需要表面项为零：
+
+$ p(x)[g(x)\frac{df^*(x)}{dx}-f(x)\frac{dg^*(x)}{dx}]|_{x=a}^{x=b}=0 $
+
++ 如果我们只考虑实值函数，并且$ f,g $分别是两个本征函数$ y_1,y_2 $，对应本征值为$ \lambda_1,\lambda_2 $：
+
+$ p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx})|_{x=a}^{x=b}=0 $
+
++ 此处存在两种情况：
+    - 情况一，$ p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx})=0 $在两个边界$ x=a,x=b $处都单独满足，即：
+
+$ p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx})|_{x=a}=0 $
+
+$ p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx})|_{x=b}=0 $
+
+        * 第一、二、三类齐次边界条件，有界条件属于此类。
+    - 情况二，$ p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx})=0 $在两个边界$ x=a,x=b $处都不满足，但是：
+
+$ p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx})|_{x=a}^{x=b}=0 $
+
+        * 周期条件属于此类
+
+##### 第一二三类齐次边界条件的S-L型本征值问题不存在简并现象
++ 对于情况一，我们可以证明$ \lambda_1\neq\lambda_2 $，即不同线性无关的本征函数一定对应不同的本征值，即不存在简并现象。
++ 采用反证法：假如两个线性无关的本征函数$ y_1(x),y_2(x) $对应同一个本征值$ \lambda $。
+    - 根据定义：
+
+$ \hat{L}y_1 = \frac{1}{\rho(x)}\{-\frac{d}{dx} [p(x)\frac{d}{dx}]+q(x)\}y_1 = \lambda y_1 $
+
+$ \hat{L}y_2 = \frac{1}{\rho(x)}\{-\frac{d}{dx} [p(x)\frac{d}{dx}]+q(x)\}y_2 = \lambda y_2 $
+
+    - 等号两侧分别乘以$ -\rho(x)y_2(x),-\rho(x)y_1(x) $并相减：
+
+$ y_2(x)\frac{d}{dx} [p(x)\frac{dy_1}{dx}]+q(x)y_1(x)y_2(x)-y_1(x)\frac{d}{dx} [p(x)\frac{dy_2}{dx}]-q(x)y_2(x)y_1(x) =0 $
+
+    - 整理得：
+
+$ y_2(x)\frac{d}{dx} [p(x)\frac{dy_1}{dx}]-y_1(x)\frac{d}{dx} [p(x)\frac{dy_2}{dx}]=0 $
+
+    - 等式左侧进行勒让德变换：
+
+$ \frac{d}{dx} [p(x)y_2(x)\frac{dy_1}{dx}]-p(x)\frac{dy_1}{dx}\frac{dy_2}{dx} -\frac{d}{dx} [p(x)y_1(x)\frac{dy_2}{dx}]+p(x)\frac{dy_2}{dx}\frac{dy_1}{dx}=0 $
+
+    - 进行简单的整理得到：
+
+$ \frac{d}{dx}[p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx})] = 0 $
+
+    - 两侧积分得到：
+
+$ p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx}) = \mathrm{const.} $
+
+    - **根据第一二三类边界条件或者有界条件**，我们可以确定这个数就是零，即：
+
+$ p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx}) \equiv 0 $
+
++ 但因为$ p(x) \not \equiv 0 $，则必有$ \mathrm{Wronski} $行列式为零：
+
+$ W[y_1(x),y_2(x)] \equiv y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx} \equiv 0 $
+
+    - 这说明$ y_1(x),y_2(x) $线性相关，矛盾！
+    - 说明一定对应着不同的本征值，$ \lambda_1\neq\lambda_2 $。
+
+$ \mathrm{Q.E.D.} $
+
+##### 周期条件的S-L型本征值问题可以存在简并现象
++ 我们在推导中得到：
+
+$ p(x)(y_1\frac{dy_2}{dx}-y_2\frac{dy_1}{dx}) = \mathrm{const.} $
+
++ 对于**周期性条件**，我们无法确定常数值为零。
++ 因此，可能存在简并现象。
+
+### 从Sturm-Liouville型方程的本征值问题看分离变量法
++ 本征函数的正交性 -> 保证了可以单独考虑每一个叠加系数满足的常微分方程。
+    - 这样就将多元常微分方程转化为了许多个一元常微分方程。
++ 本征函数组的完备性 -> 保证了最终求出来的级数解收敛于解函数。
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341700323-927d9125-6d56-436e-8a82-2d60c3a49131.png" width="333" title="" crop="0,0,1,1" id="OT1fr" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341712693-5c0dd3d8-da20-4a49-b396-94454458370e.png" width="334" title="" crop="0,0,1,1" id="lymcS" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341725473-c553df1d-a120-4f60-9285-49647ced93cf.png" width="335" title="" crop="0,0,1,1" id="u723e7b62" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341737135-077c1681-5bc5-4511-84e8-6617588a0550.png" width="333" title="" crop="0,0,1,1" id="uf387a9c0" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341747830-53aa46d0-53bc-4f42-8350-ec5dc3a4dbf0.png" width="338" title="" crop="0,0,1,1" id="u44041ba1" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341760542-bf798c3e-4703-4b51-878d-4cb31855db67.png" width="330" title="" crop="0,0,1,1" id="u116e2cc2" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341771166-918ab328-bc2d-4e9e-a8ae-937ca6cbc10f.png" width="336" title="" crop="0,0,1,1" id="u49b5675e" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341786156-470831c6-681a-4f0f-9a90-8362904ce7ab.png" width="331" title="" crop="0,0,1,1" id="ua632145c" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341799299-3ade0f75-1638-406f-a481-765ce7876469.png" width="330" title="" crop="0,0,1,1" id="uba1ad5ad" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1762341811003-cc957c5e-11e7-43be-b011-045e0a8ad4af.png" width="332" title="" crop="0,0,1,1" id="u1f766372" class="ne-image">
