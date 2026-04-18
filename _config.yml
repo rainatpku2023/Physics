@@ -1,0 +1,24 @@
+# Site settings
+
+# Title of the site
+title: My Physics Site
+
+# Description of the site
+description: A site for Physics enthusiasts
+
+# Author of the site
+author: rainatpku2023
+
+# Where to find the source files
+source: .
+
+# URL of the site
+url: "https://example.com"
+
+# Enable MathJax support
+mathjax: true
+
+# Jekyll configurations
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
