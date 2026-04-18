@@ -1,0 +1,19 @@
+需要注意，小振动问题中将动能矩阵和势能矩阵对角化并求解广义坐标的变换是合同变换，和此处不同。
+
+究其原因，是因为小振动物理问题中最终目标是让动能势能物理相同，而更换坐标。
+
+数学上的矩阵对角化主要是为了简化幂运算。
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1760496881716-853bf0f7-e2b0-4c05-855f-b0436223947a.png" width="744.999988898635" title="" crop="0,0,1,1" id="uf16c2c55" class="ne-image">
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1760496898517-852867be-f55d-471a-8e4c-d2689bf3e8c0.png" width="723.7499892152847" title="" crop="0,0,1,1" id="u3438a590" class="ne-image">
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1760496913917-6e7d1c51-9708-441c-a1ce-ef9543ef7e78.png" width="742.4999889358879" title="" crop="0,0,1,1" id="u7dc3da80" class="ne-image">
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1760496928926-981e7b15-4c2a-4e12-87ac-b8771d58e71e.png" width="728.1249891500921" title="" crop="0,0,1,1" id="u27b3b236" class="ne-image">
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1760496943951-fe1a6afd-d584-4e68-b702-b06004248dd4.png" width="734.9999890476466" title="" crop="0,0,1,1" id="uec31c78d" class="ne-image">
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1760496964710-b959f1b3-3641-47ed-b4fc-09d90b838a19.png" width="726.8749891687186" title="" crop="0,0,1,1" id="ub3d9d8ad" class="ne-image">
+
+<img src="https://cdn.nlark.com/yuque/0/2025/png/2371504/1760496979038-cf3416ee-199e-41ef-9fc6-bcd7f221a42f.png" width="724.3749892059715" title="" crop="0,0,1,1" id="u53a2493a" class="ne-image">
