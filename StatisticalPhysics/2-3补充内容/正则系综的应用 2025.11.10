@@ -1,0 +1,131 @@
+### 利用正则系综理论求解单原子理想气体状态方程
+#### 先求出正则系综的配分函数
++ 设配分函数为：
+
+$ Z = \frac{1}{N! h^{3N}} \int e^{-\beta H}d\Omega $
+
++ 对于$ N $个粒子
+    - 相空间体积元的表达式为：
+
+$ d\Omega = \prod_{i=1}^{N} dx_idy_ydz_i dp_{xi}dp_{yi}dp_{zi} $
+
+    - 哈密顿量的表达式为：
+
+$ H = \sum_{i=1}^N \frac{p_i^2}{2m} = \sum_{i=1}^N \epsilon_i $
+
+    - 据此，配分函数可以写为：
+
+$ Z = \frac{1}{N! h^{3N}} \int e^{-\beta \sum_{i=1}^N \epsilon_i}\prod_{i=1}^{N} dx_idy_ydz_i dp_{xi}dp_{yi}dp_{zi} $
+
+$ = \frac{1}{N! h^{3N}} \prod_{i=1}^{N}\int e^{-\beta \epsilon_i} dx_idy_ydz_i dp_{xi}dp_{yi}dp_{zi} $
+
++ 考虑到哈密顿量与坐标无关，可以先积分出来：
+
+$ RHS= \frac{V^N}{N! h^{3N}} \prod_{i=1}^{N}\int e^{-\beta \epsilon_i} dp_{xi}dp_{yi}dp_{zi} $
+
+$ =\frac{1}{N! } \prod_{i=1}^{N}V\int \frac{e^{-\beta \epsilon_i} dp_{xi}dp_{yi}dp_{zi}}{h^3}
+=\frac{1}{N! } \prod_{i=1}^{N}V\int \frac{e^{-\frac{\beta}{2m}(p_{xi}^2+p_{yi}^2+p_{zi}^2) } dp_{xi}dp_{yi}dp_{zi}}{h^3} $
+
+    - 注意到连乘号内部正好是单个单原子分子的子系配分函数：
+
+$ z = V\int \frac{e^{-\frac{\beta}{2m}(p_{xi}^2+p_{yi}^2+p_{zi}^2) } dp_{xi}dp_{yi}dp_{zi}}{h^3}
+= \frac{V}{h^3} (\frac{2\pi m}{\beta})^{\frac{3}{2}} $
+
+        * 其中用到了积分公式：
+
+$ \int_{-\infin}^{+\infin}e^{-x^2}dx = \sqrt{\pi} $
+
+    - 那么配分函数可以进行进一步缩写：
+
+$ Z = \frac{z^N}{N!} $
+
+#### 热力学量的计算
++ 配分函数的对数可以写为：
+
+$ \ln Z= N \ln z -\ln N! = N(\ln V - 3\ln h +\frac{3}{2}(\ln(2\pi m)-\ln \beta)) - \ln N! $
+
++ 单原子理想气体的内能为：
+
+$ U = -\frac{\partial}{\partial \beta} \ln Z = -N \frac{\partial}{\partial \beta}\ln z =  \frac{3}{2} Nk_B T $
+
+    - 压强为：
+
+$ p = \frac{1}{\beta} \frac{\partial}{\partial V}\ln Z =  \frac{N}{\beta} \frac{\partial}{\partial V}\ln z = \frac  {Nk_BT}{V} $
+
+    - 熵为：
+
+$ S = N k_B (\ln z - \beta \frac{\partial}{\partial \beta} \ln z)-k_B \ln N! = \frac{3}{2} Nk_B \ln T + Nk_B \ln \frac{V}{N} + \frac{3}{2}Nk_B [\frac{5}{3} + \ln (\frac{2\pi mk_B}{h^2})] $
+
+    - 其他的热力学量都很好计算，再次不再演示。
+
+### 固体热容的爱因斯坦理论
+#### 先求出正则系综的配分函数
++ 设固体的$ N $个原子可以看成$ 3N $个振子，基频相同，圆频率量子化都为：
+
+$ \epsilon_i = (n_i + \frac{1}{2})\hbar\omega $
+
+    - 则系统的一个状态的能量为：
+
+$ E_S = \sum_{i=1}^{3N} \epsilon_i = \sum_{i=1}^{3N} (n_i + \frac{1}{2})\hbar\omega $
+
++ 则系统的配分函数可以写为：
+
+$ Z = \sum_S e^{-\beta E_S} 
+= \sum_S \exp[{-\beta  \sum_{i=1}^{3N} (n_i + \frac{1}{2})\hbar\omega}] 
+= \sum_S \prod_{i=1}^{3N} \exp[{-\beta (n_i + \frac{1}{2})\hbar\omega}] $
+
+    - 其中$ \sum_S $指的是对所有可能的状态求和。
+    - 所有可能的状态包含：每一个振子的能量从$ \frac{1}{2} \hbar \omega $取到$ \infin $。而且每个振子相互独立。
+
+$ RHS = \sum_{n_1=0}^{\infin} \sum_{n_2=0}^{\infin}\cdots  \sum_{n_{3N}=0}^{\infin} \prod_{i=1}^{3N} \exp[{-\beta (n_i + \frac{1}{2})\hbar\omega}] $
+
+    - 交换求和和连乘的顺序，得到：
+
+$ RHS =  \prod_{i=1}^{3N}\sum_{n_i=0}^{\infin} \exp[{-\beta (n_i + \frac{1}{2})\hbar\omega}] = z^{3N} $
+
+    - 其中$ z $是一个振子的子系配分函数。
+
+$ z = \sum_{n=0}^{\infin} \exp[{-\beta (n + \frac{1}{2})\hbar\omega}] =e^{-\frac{\beta}{2}\hbar \omega}\sum_{n=0}^{\infin} \exp[{-\beta n\hbar\omega}] = \frac{e^{-\frac{\beta}{2} \hbar \omega}}{1-e^{-\beta \hbar \omega}} $
+
+    - 其中用到了公式：
+
+$ \sum_{n=0}^{\infin} x^n = 1+x +x^2+x^3+ \cdots = \frac{1}{1-x},\; -1<x < 1 $
+
+    - 因此配分函数为：
+
+$ Z =z^{3N}= (\frac{e^{-\frac{\beta}{2} \hbar \omega}}{1-e^{-\beta \hbar \omega}})^{3N} $
+
+#### 热力学量的计算
++ 内能：
+
+$ U = -\frac{\partial}{\partial \beta} \ln Z = -3N \frac{\partial}{\partial \beta}\ln z =  3N\frac{\hbar \omega}{2} + \frac{3N\hbar \omega}{e^{\beta \hbar \omega}-1} = 3N\frac{\hbar \omega}{2} + \frac{3N\hbar \omega}{e^{\hbar \omega/k_B T}-1}  $
+
+    - 其中第一项为零点能，第二项为激发能。
++ 热容：
+
+$ C_V = (\frac{\partial U}{\partial T})_V = \frac{\partial}{\partial T}(3N\frac{\hbar \omega}{2} + \frac{3N\hbar \omega}{e^{\hbar \omega/k_B T}-1} ) = 3Nk_B(\frac{\hbar \omega}{k_B T})^2\frac{e^{\hbar \omega /k_BT}}{(e^{\hbar \omega/k_B T}-1)^2} $
+
+#### 近似
++ 引入**爱因斯坦特征温度**$ \theta_E $：
+
+$ \theta_E = \frac{\hbar \omega}{k_B} $
+
+    - 特征温度代表了能级间隔$ \hbar \omega $对应的温度间隔。
++ 则：
+
+$ C_V =  3Nk_B(\frac{\theta_E}{ T})^2\frac{e^{\theta_E /T}}{(e^{\theta_E/T}-1)^2} $
+
++ 在高温状态下$ T >> \theta_E $：
+
+$ e^{\theta_E/T}-1 \approx \frac{\theta_E}{T} $$ e^{\theta_E/T}\approx 1 $
+
+$ C_V = 3Nk_B $
+
++ 在低温状态下$ T << \theta_E $：
+
+$ e^{\theta_E/T}-1 \approx e^{\theta_E/T} >>1 $
+
+$ C_V =  3Nk_B(\frac{\theta_E}{ T})^2 e^{-\theta_E /T} $
+
++ 爱因斯坦模型在高温下能够很好地解释实验结果。
++ 低温下计算的热容趋于零，但是趋于零的行为不对。
