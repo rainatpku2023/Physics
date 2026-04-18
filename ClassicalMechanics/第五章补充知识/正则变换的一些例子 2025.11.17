@@ -1,0 +1,198 @@
+### 已知正则变换生成函数求谐振子运动方程
+#### 问题
++ 使用第一类生成函数：
+
+$ F_1(q,Q) = \frac{1}{2} m \omega q^2 \cot Q $
+
+    - 推导质量为$ m $，本征频率$ \omega $的一维简谐振子的运动方程。
+
+#### 求解过程
++ 简谐振子的拉格朗日量为：
+
+$ L = \frac{1}{2} m \dot q^2 + \frac{1}{2}m\omega^2 q^2 $
+
+    - 经过[勒让德变换](https://dengbaiyu2023.yuque.com/org-wiki-dengbaiyu2023-vsgo6q/dw1fe5/tukfgpy9rfkrubqn#y0VDi)，得到哈密顿量的表达式：
+
+$ H(q,p) = \frac{1}{2m}p^2 + \frac{1}{2}m\omega^2q^2 $
+
++ 根据[第一类正则变换](https://dengbaiyu2023.yuque.com/org-wiki-dengbaiyu2023-vsgo6q/dw1fe5/ndwphpvy0ps49uiq#XVa9k)的性质：
+
+$ p = \frac{\partial F_1}{\partial q} = m\omega q \cot Q $
+
+$ P = -\frac{\partial F_1}{\partial Q} = \frac{m \omega^2 q^2}{2 \sin Q} $
+
+    - 可以反解出来：
+
+$ q = \sqrt{\frac{2P}{m\omega}} \sin Q $
+
+    - 代入$ p $的表达式：
+
+$ p = \sqrt{2m\omega P}\cos Q $
+
+    - 变换后的哈密顿量：
+
+$ K = H + \frac{\partial F_1}{\partial t} = \frac{1}{2m}(\sqrt{2m\omega P}\cos Q)^2 +\frac{1}{2}m\omega^2(\sqrt{\frac{2P}{m\omega}} \sin Q)^2 = \omega P $
+
++ 根据变换后的哈密顿量，可以求解出新的坐标和动量：
+
+$ \dot Q = \frac{\partial K}{\partial P} = \omega $
+
+$ \dot P = - \frac{\partial K}{\partial Q} = 0 $
+
+    - 积分得：
+
+$ Q = \omega t + \phi $
+
+$ P = \frac{E}{\omega} $
+
+（这样选取之后物理意义比较明显）
+
+    - 代入$ Q,P $的表达式，反解出：
+
+$ q = \sqrt{\frac{2E}{m\omega^2}} \sin (\omega t + \phi) $
+
+$ p =  \sqrt{2mE}\cos(\omega t + \phi) $
+
+#### 讨论
++ 正则变换后，新坐标和新动量的物理意义可能非常不明显，或者非常匪夷所思。
++ 但是新坐标和新动量仍让要满足哈密顿正则方程，保泊松括号。
+
+### 用哈密顿-雅可比方程求解谐振子哈密顿主函数，并求解运动方程
+#### 问题
++ 使用哈密顿-雅可比方程求解简谐振子运动方程。
+
+#### 求解过程
++ 简谐振子的哈密顿量为：
+
+$ H(q,p) = \frac{1}{2m}p^2 + \frac{1}{2}kq^2 $
+
++ 使用哈密顿-雅可比方程求解时，应该<font style="color:#DF2A3F;">期望变换后的新动量为常量</font>。设[哈密顿主函数](https://dengbaiyu2023.yuque.com/org-wiki-dengbaiyu2023-vsgo6q/dw1fe5/ndwphpvy0ps49uiq#OCmPw)为：
+
+$ F_2(q,P=a,t) = S(q,a,t) = S^a(q,t) $
+
+    - 还期望<font style="color:#DF2A3F;">变换后的哈密顿量为零，不显含任何坐标和动量</font>：
+
+$ K = \frac{\partial S}{\partial t} + H(q,\frac{\partial S}{\partial q},t) \equiv0 $
+
+    - 考虑到原来的哈密顿量不显含时间，应该有：
+
+$ \frac{\partial S}{\partial t} + H(q,\frac{\partial S}{\partial q}) =0 $
+
+        * 这就是哈密顿-雅可比方程。
++ 假设哈密顿主函数可以分离变量，即：
+
+$ S^a(q,t) = W(q) + T(t) $
+
+    - 代入哈密顿-雅可比方程：
+
+$ \frac{d T}{d t} + H(q,\frac{d W}{d q}) =0 $
+
+    - 左边第一项直和时间有关，第二项只和空间有关，因此二者应该等于常量，且这两个常量互为相反数：
+
+$ \frac{d T}{d t}= -E $
+
+$ H(q,\frac{d W}{d q}) =E $
+
++ 将这个表达式代入原来哈密顿量的表达式：
+
+$ E= \frac{1}{2m}(\frac{d W}{d q})^2 + \frac{1}{2}kq^2 $
+
+    - 可以反解出来哈密顿特征函数：
+
+$ W(q) = ±\sqrt{mk} \int \sqrt{\frac{2E}{k}-q^2}dq $
+
+    - 代入求解哈密顿主函数：
+
+$ S^a(q,t) = T(t) + W(q) = -Et±\sqrt{mk} \int \sqrt{\frac{2E}{k}-q^2}dq $
+
++ 设常量$ E $就是新的广义动量$ P=a $，那么：
+
+$ Q = \frac{\partial S}{\partial P} = \frac{\partial S}{\partial E} = -t ± \sqrt{\frac{m}{k}}\int \frac{dq}{\sqrt{\frac{2E}{k}-q^2}}
+= -t ± \sqrt{\frac{m}{k}} \arccos (\sqrt{\frac{k}{2E}} q) $
+
+    - 根据哈密顿正则方程：
+
+$ \dot Q = \frac{\partial K}{\partial P} = 0 $
+
+    - 可知$ Q $为常量，因此可设：
+
+$ Q = - t_0 $
+
+    - 代入知：
+
+$ Q =-t ± \sqrt{\frac{m}{k}} \arccos (\sqrt{\frac{k}{2E}} q)= -t_0 $
+
+    - 从中可以反解出：
+
+$ q = \sqrt{\frac{2E}{k}} \cos[\sqrt{\frac{k}{m}} (t-t_0)] $
+
+#### 讨论
++ 使用哈密顿-雅可比方程求解时，应该<font style="color:#DF2A3F;">期望变换后的新动量为常量</font>。这个常量可以直接选定。
+    - 选定新动量后，新坐标应该反解出来。
++ 还期望<font style="color:#DF2A3F;">变换后的哈密顿量为零，不显含任何坐标和动量</font>。
+
+### 玻尔原子模型
+#### 问题
++ 使用[作用量变量-角变量](https://dengbaiyu2023.yuque.com/org-wiki-dengbaiyu2023-vsgo6q/dw1fe5/ndwphpvy0ps49uiq#KV3s8)方法求解氢原子玻尔模型的轨道周期。
+
+#### 求解过程
++ 半经典模型下，氢原子的哈密顿量为：
+
+$ H = \frac{1}{2m}(p_r^2 + \frac{p_\theta^2}{r^2}) - \frac{e^2}{4\pi \epsilon_0 r} = E $
+
+
+
++ 哈密顿量$ H $中不显含$ \theta $，因此$ p_\theta $守恒：
+
+$ p_\theta = \frac{\partial F_2}{\partial \theta} = \frac{\partial W}{\partial \theta} = \alpha_\theta(常量) $
+
+    - 将这个式子代回哈密顿量的表达式，反解出：
+
+$ p_r = \frac{\partial W}{\partial r} = ±\sqrt{2m(E + \frac{e^2}{4\pi \epsilon_0 r}-\frac{\alpha_\theta^2}{2mr^2})} $
+
++ 由此计算出相应的作用量变量：
+
+$ J_\theta = \oint p_\theta d\theta = \alpha_\theta \cdot 2\pi = \mathrm{const.} $
+
+$ J_r = \oint p_rdr = 2\int_{r_1}^{r_2}\sqrt{2m(E + \frac{e^2}{4\pi \epsilon_0 r}-\frac{\alpha_\theta^2}{2mr^2})} dr= 2\pi (-\alpha_\theta + \frac{e^2}{4\pi \epsilon_0}\sqrt{-\frac{m}{2E}}) 
+ $
+
+$ = -J_\theta + \frac{e^2}{2\epsilon_0}\sqrt{-\frac{m}{2E}} $
+
+    - 由此可以反解出来：
+
+$ E = -\frac{me^4}{8\epsilon_0^2(J_r+J_\theta)^2} $
+
+    - 由此可知：
+
+$ f_r = \frac{\partial E}{\partial J_r} = \frac{me^4}{4 \epsilon_0^2 (J_r+J_\theta)^3} $
+
+$ f_\theta = \frac{\partial E}{\partial J_\theta} = \frac{me^4}{4 \epsilon_0^2 (J_r+J_\theta)^3} $
+
+        * 可见两个周期运动的频率相同，因此轨道闭合。
++ 玻尔假定：
+
+$ J_r = n_r h $
+
+$ J_\theta = n_\theta h $
+
+$ J = J_r + J_\theta = (n_r + n_\theta) = nh $
+
+    - 则：
+
+$ f = \frac{me^4}{4\epsilon_0^2n^3h^3} $
+
+$ E = -\frac{me^4}{8\epsilon_0^2 n^2h^2} $
+
+        * 第二个式子就是氢原子能级的能量。
++ 考虑跃迁释放的光子，频率为：
+
+$ \nu_{mn} = \frac{E_m-E_n}{h} = \frac{m_ee^4}{8\epsilon_0^2 h^3}(\frac{1}{n^2}-\frac{1}{m^2}) $
+
+    - 其中系数：
+
+$ R_H = \frac{m_ee^4}{8\epsilon_0^2 h^3} $
+
+        * 就是里德伯常数。
+
+
