@@ -1,0 +1,201 @@
+这一套量子力学笔记主要参考曾谨言《量子力学教程（第三版）》。因为有部分内容在近代物理课程中已经学习过，在此处不会进行重复。近代物理笔记：[大二下：近代物理](https://dengbaiyu2023.yuque.com/org-wiki-dengbaiyu2023-vsgo6q/nsycge/bhapgchqplqag5s8)
+
+### 波函数的统计诠释
+#### 波函数的归一化
++ 对于一个波函数$ \psi(\vec{r}) $，其归一化条件为：
+
+$ \int_{(\text{all space})}|\psi(\vec{r})|^2d^3 r =1 $
+
++ 波函数是否归一化，对于实际粒子的概率分布没有影响，重点在于相对的概率。
+    - 没有归一化时，有振幅不确定性$ C\psi(\vec{r}) $、相位不确定性$ e^{i\theta}\psi(\vec{r}) $。
+
+#### 归一化后波函数的模方是概率密度
++ 一个粒子归一化后的波函数是$ \psi(\vec{r}) $，那么粒子在体元$ d^3 r $中的概率为：
+
+$ dP = |\psi(\vec{r})|^2d^3r = \psi^*(\vec{r})\psi(\vec{r})d^3r $
+
+#### 两个粒子的情形
++ 两个粒子波函数$ \psi(\vec{r}_1,\vec{r}_2) $的归一化条件为：
+
+$ \iint_{(\text{all space})}|\psi(\vec{r}_1,\vec{r}_2))|^2d^3 r_1d^3 r_2 =1 $
+
++ 对于两个粒子的归一化波函数$ \psi(\vec{r}_1,\vec{r}_2) $，那么：
+    - $ |\psi(\vec{r}_1,\vec{r}_2)|^2d^3r_1d^3r_2 $代表粒子$ 1 $位于$ d^3 r_1 $中且粒子$ 2 $位于$ d^3 r_2 $中的概率。
+    - $ \left(\int|\psi(\vec{r}_1,\vec{r}_2)|^2d^3r_2\right)d^3r_1 $代表粒子$ 1 $位于$ d^3 r_1 $中的概率。
+        * $ |\psi(\vec{r}_1,\vec{r}_2)|^2 $相当于是联合概率分布。
++ **后文如果**$ \int $**没有加上下标，默认为全空间积分。**
+
+#### 将波函数按照平面波展开
++ 对于波函数$ \psi(\vec{r}) $，可以进行$ \mathrm{Fourier} $展开，即$ \mathrm{Fourier} $逆变换：
+
+$ \psi(\vec{r}) = \frac{1}{(2\pi\hbar)^{3/2}} \int_{-\infin}^{+\infin} \phi(\vec{p})e^{i\vec{p}\cdot\vec{r}/\hbar}d^3 p $
+
+    - 其中$ \phi(\vec{p}) $是动量为$ \vec{p} $单色波在动量表象下的波函数，其表达式如下，即$ \mathrm{Fourier} $正变换：
+
+$ \phi(\vec{p}) = \frac{1}{(2\pi\hbar)^{3/2}} \int_{-\infin}^{+\infin} \psi(\vec{r})e^{-i\vec{p}\cdot\vec{r}/\hbar}d^3 r $
+
+    - 需要注意积分号中的$ e^{\pm i\vec{p}\cdot\vec{r}/\hbar} $是取正号还是负号，此外也要注意$ 1/\hbar $的因子。
++ 不难发现，如果采用这样的定义，如果坐标表象下的$ \psi(\vec{r}) $是归一化的，那么动量表象下的$ \phi(\vec{p}) $自然也是归一化的。
+    - 证明：
+
+$ \int_{-\infin}^{+\infin} \phi^*(\vec{p})\phi(\vec{p})d^3 p = \iiint_{-\infin}^{+\infin} d^3pd^3rd^3r'\psi^*(\vec{r})\psi(\vec{r}') \frac{1}{(2\pi\hbar)^{3/2}}e^{i\vec{p}\cdot(\vec{r}-\vec{r}')/\hbar} $
+
+$ = \iint_{-\infin}^{+\infin} d^3rd^3r'\psi^*(\vec{r})\psi(\vec{r}') \delta(\vec{r}-\vec{r}') $
+
+$ = \int_{-\infin}^{+\infin} \psi^*(\vec{r})\psi(\vec{r})d^3 r =1 $
+
+    - 其中第一个等号用到了$ \mathrm{Fourier} $正变换的表达式，注意两个动量其中一个要引入哑变量$ \vec{r}' $进行区分，这样才能保证积分空间包括了全部。
+    - 第二个等号用到了$ \mathrm{Delta} $函数的性质。
+    - 第三个等号后面就是坐标表象的$ \psi(\vec{r}) $的归一化条件。
+
+#### 动量算符的引进
++ 根据波函数的统计诠释，对于归一化后的波函数$ \psi(\vec{r}) $
+    - 显然可以直接写出坐标的平均值：
+
+$ <\vec{r}> = \int_{-\infin}^{+\infin} |\psi(\vec{r})|^2 \vec{r}d^3 r $
+
+    - 势能的平均值：
+
+$ <V> = \int_{-\infin}^{+\infin} |\psi(\vec{r})|^2 V(\vec{r})d^3 r $
+
+
+
++ 但是，因为坐标和动量是不能确定的，所以不能直接写出：
+
+$ <\vec{p}> = \int_{-\infin}^{+\infin} |\psi(\vec{r})|^2 \vec{p}(\vec{r})d^3 r \; (\text{wrong}) $
+
+    - 此时考虑借用动量表现的归一化波函数$ \phi(\vec{p}) $计算动量平均值：
+
+$ <\vec{p}> = \int_{-\infin}^{+\infin} |\phi(\vec{p})|^2 \vec{p}d^3 p 
+=\int_{-\infin}^{+\infin} \phi^*(\vec{p})\phi(\vec{p}) \vec{p}d^3 p  $
+
+$ =\iint_{-\infin}^{+\infin} d^3 p d^3 r \psi^*(\vec{r}) \frac{1}{(2\pi \hbar)^{3/2}}e^{i\vec{p}\cdot \vec{r}/\hbar} \vec{p} \phi(\vec{p}) $
+
+$ =\iint_{-\infin}^{+\infin} d^3 p d^3 r \psi^*(\vec{r}) \frac{1}{(2\pi \hbar)^{3/2}}(-i\hbar \nabla)e^{i\vec{p}\cdot \vec{r}/\hbar}  \phi(\vec{p}) $
+
+$ = \int_{-\infin}^{+\infin}d^3r\psi^*(\vec{r})(-i\hbar \nabla)\psi(\vec{r}) $
+
+    - 其中第二行的等号利用了复共轭波函数的$ \mathrm{Fourier} $展开：
+
+$ \phi^*(\vec{p}) =\left( \frac{1}{(2\pi\hbar)^{3/2}} \int_{-\infin}^{+\infin} \psi(\vec{r})e^{-i\vec{p}\cdot\vec{r}/\hbar}d^3 r \right)^* = \frac{1}{(2\pi\hbar)^{3/2}} \int_{-\infin}^{+\infin} \psi^*(\vec{r})e^{i\vec{p}\cdot\vec{r}/\hbar}d^3 r $
+
+        * 需要注意不仅位形波函数$ \psi(\vec{r})\rightarrow\psi^*(\vec{r}) $，还有$ e^{-i\vec{p}\cdot\vec{r}/\hbar}\rightarrow e^{i\vec{p}\cdot\vec{r}/\hbar} $。
+    - 第三行是注意到了：
+
+$ e^{i\vec{p}\cdot \vec{r}/\hbar} \vec{p} = (-i\hbar \nabla)e^{i\vec{p}\cdot \vec{r}/\hbar} $
+
+        * 这也是引入坐标表象下的动量算符的关键一步，即：
+
+$ \hat{\vec{p}} = -i\hbar \nabla $
+
+    - 第四是利用了$ \mathrm{Fourier} $逆变换：
+
+$ \psi(\vec{r}) = \frac{1}{(2\pi\hbar)^{3/2}} \int_{-\infin}^{+\infin} \phi(\vec{p})e^{i\vec{p}\cdot\vec{r}/\hbar}d^3 p $
+
++ **<font style="color:#DF2A3F;">可见，动量算符的形式</font>**$ \hat{\vec{p}} = -i\hbar \nabla $**<font style="color:#DF2A3F;">是分部积分的结果，而非强行规定。</font>**
++ **<font style="color:#DF2A3F;">在不同的表象，分布积分的结果不同，算符形式也就不同。</font>**
+
+#### 坐标表象下的其他力学量算符
++ 坐标表象下的角动量算符：
+
+$ \hat{\vec{L}} = \vec{r}\times \hat{\vec{p}} = -i\hbar \vec{r}\times \nabla $
+
++ 坐标表象下的动能算符：
+
+$ \hat{T} = \frac{1}{2m} \hat{\vec{p}}\cdot  \hat{\vec{p}} = -\frac{\hbar^2}{2m} \nabla^2 $
+
++ 坐标表象下的哈密顿算符：
+
+$ \hat{H} = \hat{T} +\hat{V}  = -\frac{\hbar^2}{2m} \nabla^2 + V(\vec{r}) $
+
+### 薛定谔方程
+#### 薛定谔方程的引入
++ 考虑任意一个单色平面波：
+
+$ \psi(\vec{r},t) = e^{i (\vec{k}\cdot\vec{r}-\omega t)} $
+
+    - 结合$ \text{de Broglie} $关系：
+
+$ \omega = E/\hbar,\; \vec{k} = \vec{p}/\hbar $
+
+    - 波函数可以立即改写为：
+
+$ \psi(\vec{r},t) = e^{i (\vec{k}\cdot\vec{r}-\omega t)} = e^{i (\vec{p}\cdot\vec{r}-E t)/\hbar} $
+
++ 对于这样的波函数，显然有：
+
+$ \left(i\hbar \frac{\partial}{\partial t}+\frac{\hbar^2}{2m}\nabla^2\right)\psi(\vec{r},t) =\left(E-\frac{p^2}{2m}\right)\psi(\vec{r},t) =0 $
+
++ 这也就得到了自由粒子的$ \mathrm{Schr\ddot{o}dinger} $方程：
+
+$ i\hbar \frac{\partial}{\partial t}\psi(\vec{r},t) = -\frac{\hbar^2}{2m}\nabla^2\psi(\vec{r},t) $
+
+    - 因为自由粒子可以看成多种单色波的叠加，而上述方程对于每一种单色波都成立，所以整体加起来也成立。
+
+
+
++ 如果粒子在势能场$ V(\vec{r}) $中运动，那么可以认为每处仍然遵循单色波函数的演化方程，只是能量从$ E $减到了$ E - V(\vec{r}) $，因此有：
+
+$ i\hbar \frac{\partial}{\partial t}\psi(\vec{r},t) = \left[-\frac{\hbar^2}{2m}\nabla^2+ V(\vec{r})\right] \psi(\vec{r},t) $
+
+    - 这就是在势能场$ V(\vec{r}) $中运动的粒子满足的$ \mathrm{Schr\ddot{o}dinger} $方程。
+
+#### 定域概率守恒
++ 此处的知识已经掌握的较好，因此在这里把曾谨言老师的书直接截屏过来。
+
+<img src="https://cdn.nlark.com/yuque/0/2026/png/2371504/1773558659117-b71ded70-a02b-4996-83dd-80e7fb82fd2c.png" width="639.7499809339648" title="" crop="0,0,1,1" id="u2d0d7f26" class="ne-image">
+
+#### 初值问题
++ 考虑自由空间中传播的波函数$ \psi(\vec{r},t) $，可以对其初始时刻进行展开：
+
+$ \psi(\vec{r},0) = \frac{1}{(2\pi\hbar)^{3/2}} \int_{-\infin}^{+\infin} \phi(\vec{p})e^{i\vec{p}\cdot\vec{r}/\hbar}d^3 p $
+
+    - 其中每个频率的波单色波函数都各自以各自的频率单独演化：
+
+$ \phi(\vec{p})\rightarrow \phi(\vec{p}) e^{-iEt} $
+
++ 演化后总的波函数为演化后的单色波波函数的叠加：
+
+$ \psi(\vec{r},t) = \frac{1}{(2\pi\hbar)^{3/2}} \int_{-\infin}^{+\infin} \phi(\vec{p})e^{i(\vec{p}\cdot\vec{r}-Et)/\hbar}d^3 p $
+
+#### 传播子
++ 对于上面的式子，其实还可以引入哑变量$ \vec{r}' $对$ \phi(\vec{p}) $进行展开：
+
+$ \phi(\vec{p}) = \frac{1}{(2\pi\hbar)^{3/2}} \int_{-\infin}^{+\infin} \psi(\vec{r}',0)e^{-i\vec{p}\cdot\vec{r}'/\hbar}d^3 r' $
+
+    - 代入后得到：
+
+$ \psi(\vec{r},t) = \frac{1}{(2\pi\hbar)^{3}} \int_{-\infin}^{+\infin}d^3 r'\int_{-\infin}^{+\infin} \psi(\vec{r}',0)e^{i[\vec{p}\cdot(\vec{r}-\vec{r}')-Et]/\hbar}d^3 p $
+
++ 或者改写为：
+
+$ \psi(\vec{r},t) = \frac{1}{(2\pi\hbar)^{3}} \int_{-\infin}^{+\infin}d^3 r'\int_{-\infin}^{+\infin} \psi(\vec{r}',t')e^{i[\vec{p}\cdot(\vec{r}-\vec{r}')-(E-E')t]/\hbar}d^3 p $
+
++ 这样就得到了传播子：
+
+$ G(\vec{r},t;\vec{r}',t') = \frac{1}{(2\pi\hbar)^{3}} \int_{-\infin}^{+\infin} e^{i[\vec{p}\cdot(\vec{r}-\vec{r}')-(E-E')t]/\hbar}d^3 p $
+
+    - 传播子满足：
+
+$ \psi(\vec{r},t) = \int d^3 r  G(\vec{r},t;\vec{r}',t') \psi(\vec{r}',t'), \; t\geq t' $
+
++ 可见可以认为$ t' $时间断面的源空间的波函数分布直接决定了$ t $时间断面场空间的波函数分布。
+    - 叠加系数就是传播子$ G(\vec{r},t;\vec{r}',t') $。
+
+#### 定态与非定态
++ 只有一个能量本征值的函数被称为定态，因为概率分布不随时间变化。
++ 其他情况称为非定态，因为不同能量本征值的本征函数演化周期不同，导致加和后的总波函数对应的概率分布随时间变化。
+
+<img src="https://cdn.nlark.com/yuque/0/2026/png/2371504/1773559850242-43b6979a-4d08-475a-b162-7101e0360d93.png" width="198" title="" crop="0,0,1,1" id="ucc233a06" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2026/png/2371504/1773559861388-52692050-d665-44e4-86f4-47cc2da4890b.png" width="200" title="" crop="0,0,1,1" id="uf6249cba" class="ne-image"><img src="https://cdn.nlark.com/yuque/0/2026/png/2371504/1773559874693-a9bae1bf-f9e6-46c2-bc6d-6966303d1cfd.png" width="200" title="" crop="0,0,1,1" id="u3c579492" class="ne-image">
+
+### 量子态叠加原理
++ 对于纯态$ \psi_1,\psi_2 $叠加产生的叠加态：
+
+$ \psi = c_1 \psi_1 + c_2 \psi_2 $
+
++ 如果$ \psi_1,\psi_2,\psi $都是归一化后的结果，那么那么测量到$ \psi_1 $的概率为$ |c_1|^2 $，测量到$ \psi_2 $的概率为$ |c_2|^2 $。
+    - 而且有：
+
+$ |c_1|^2 + |c_2|^2=1 $
+
++ 量子态的叠加不产生新的观测结果。
