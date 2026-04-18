@@ -6,7 +6,7 @@
 #### 振动和波：波动方程
 + 非受迫振动的弦的横振动的波动方程为：
 
-$ \frac{\partial^2 u}{\partial t^2} - a^2 \frac{\partial^2 u}{\partial x^2} = 0 $
+$$ \frac{\partial^2 u}{\partial t^2} - a^2 \frac{\partial^2 u}{\partial x^2} = 0 $$
 
     - 其中$ a $是波速，表达式为：
 
